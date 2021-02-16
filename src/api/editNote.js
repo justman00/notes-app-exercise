@@ -4,7 +4,7 @@ const editNote = (noteId, newNote) =>
   client
     .query(
       q.Update(q.Ref(q.Collection('notes'), noteId), {
-        data: { text: { ...newNote } },
+        data: { ...newNote },
       })
     )
     .then((ret) => console.log(ret))

@@ -4,6 +4,8 @@ import { Box, Flex, Link as ChakraLink, Heading } from '@chakra-ui/react';
 
 import Home from './pages/Home';
 import CreateNotePage from './pages/CreateNotePage';
+import Note from './pages/Note';
+import EditPage from './pages/EditPage';
 
 function App() {
   return (
@@ -39,6 +41,8 @@ function App() {
         <Box p="36px" w="70%">
           <Switch>
             <Route path="/create-note" component={CreateNotePage} />
+            <Route path="/notes/:id/edit" component={EditPage} />
+            <Route path="/notes/:id" component={Note} />
             <Route path="/" component={Home} />
           </Switch>
         </Box>

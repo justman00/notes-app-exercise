@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 
-import { getAllNotes } from '../api';
 import { Heading, Text, Flex } from '@chakra-ui/react';
 import NoteCard from '../components/NoteCard';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,10 +11,7 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getAllNotes().then((res) => {
-      console.log(res);
-      dispatch(fetchNotes());
-    });
+    dispatch(fetchNotes());
   }, [dispatch]);
 
   return (

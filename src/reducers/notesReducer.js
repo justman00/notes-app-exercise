@@ -3,6 +3,7 @@ import {
   FETCH_ACTIONS_START,
   FETCH_ACTIONS_FAILURE,
   CREATE_NOTE_SUCCESS,
+  EDIT_NOTE_SUCCESS,
 } from '../actions/notesActions';
 
 const initialState = {
@@ -38,6 +39,17 @@ export const notesReducer = (state = initialState, action) => {
       return {
         ...state,
         notes: [...state.notes, action.payload],
+      };
+
+    case EDIT_NOTE_SUCCESS:
+      return {
+        ...state,
+        notes: state.notes.map((note) => {
+          if (note.ref.value.id === action.payload.ref.value.id) {
+            return action.payload;
+          }
+          return note;
+        }),
       };
     default:
       return state;

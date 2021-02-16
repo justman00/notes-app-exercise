@@ -1,5 +1,5 @@
 import React from 'react';
-import { Textarea, Input, FormControl, Button } from '@chakra-ui/react';
+import { Textarea, Input, Button } from '@chakra-ui/react';
 
 const initialState = {
   title: '',
@@ -7,8 +7,8 @@ const initialState = {
   tags: [],
 };
 
-function NotesForm({ onSubmitCallback }) {
-  const [value, setValue] = React.useState(initialState);
+function NotesForm({ onSubmitCallback, initialNote = initialState }) {
+  const [value, setValue] = React.useState(initialNote);
 
   const handleInputChange = (e) => {
     setValue({ ...value,  [e.target.name]: e.target.value });

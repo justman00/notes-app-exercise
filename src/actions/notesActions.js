@@ -28,3 +28,17 @@ export const addNote = (note) => async (dispatch) => {
     dispatch({ type: CREATE_NOTE_FAILURE, payload: error.message });
   }
 };
+
+export const EDIT_NOTE_SUCCESS = 'EDIT_NOTE_SUCCESS';
+export const EDIT_NOTE_FAILURE = 'EDIT_NOTE_FAILURE';
+
+export const changeNote = (note) => async (dispatch) => {
+  try {
+    const newNote = await editNote(note);
+
+    dispatch({ type: EDIT_NOTE_SUCCESS, payload: newNote });
+  } catch (error) {
+    console.error(error)
+    dispatch({ type: EDIT_NOTE_FAILURE, payload: error.message });
+  }
+};
