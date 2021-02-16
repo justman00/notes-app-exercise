@@ -7,7 +7,7 @@ function NoteCard({ note }) {
   return (
     <Link to={`/notes/${note.ref.value.id}`}>
       <Box
-        maxW="250px"
+        w="250px"
         overflow="hidden"
         p="12px"
         boxShadow="md"
