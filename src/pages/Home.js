@@ -14,12 +14,24 @@ const Home = (props) => {
       ) : (
         <div className="notes">
           {props.notes.map((note) => (
-            <div key={note.ts} className="notes"><br />
-              Title: {note.data.title}
-              <br />
-              Content: {note.data.content}
-              <br />
-              Tags: {note.data.tags} 
+            <div key={note.ts} className="card">
+              <div>
+                <div className="cardAtribut">Title :</div> {note.data.title}
+              </div>
+
+              <div>
+                <div className="cardAtribut">Content :</div>
+                {note.data.content}
+              </div>
+
+              <div>
+                <div className="cardAtribut">Tags :</div>
+                {note.data.tags.map((tag) => (
+                  <div key={Math.floor(Math.random() * 100)} className="tag">
+                    {tag}
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>

@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap");
+body {
+  font-family: "Mukta", sans-serif;
+  font-weight: 600;
+  background-color: #283747;
+  color: #c8cfd6;
+  margin: 0;
+}
+header {
+  display: flex;
+  justify-content: center;
+}
+.navigation {
+  background-color: #314458;
+  margin: 5px;
+
+  height: 2em;
+  display: flex;
+  align-items: center;
+  width: 60%;
+  justify-content: space-around;
+  border-radius: 10px;
+}
+li {
+  list-style-type: none;
+  font-size: small;
+}
+.link {
+  color: #c8cfd6;
+  text-decoration: none;
+  margin: 5px;
+  padding: 5px 18px 5px 15px;
+  border-radius: 5px;
+}
+.link:hover {
+  transition: 0.4s;
+  color: #080808;
+  text-decoration: none;
+  margin: 5px;
+  background-color: #ff4136;
+}
+.notes {
+  color: #028a02;
+  border-radius: 5px;
+  display: flex;
+  margin: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  border-radius: 5px;
+  margin: 4px;
+  font-size: small;
+  padding: 10px;
+  background-color: #000000;
+  cursor: pointer;
+  width: 17em;
+  height: 10em;
+  overflow: hidden;
+  border: 0.5px solid rgb(0, 195, 255);
+}
+.title {
+  color: #aa170f;
+}
+
+.tags:nth-word(1) {
+  color: #aa170f;
+}
+.tag {
+  display: inline-block;
+  background-color: #2e2f35;
+  margin: 3px;
+  padding: 0px 2px 0px 2px;
+  font-size: 11px;
+  border-radius: 7px;
+  color: #ebb70e;
+}
+.cardAtribut {
+  display: inline-block;
+  margin-right: 3px;
+  color: #aa170f;
+}
