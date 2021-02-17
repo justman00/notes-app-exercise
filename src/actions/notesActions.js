@@ -32,9 +32,9 @@ export const addNote = (note) => async (dispatch) => {
 export const EDIT_NOTE_SUCCESS = 'EDIT_NOTE_SUCCESS';
 export const EDIT_NOTE_FAILURE = 'EDIT_NOTE_FAILURE';
 
-export const changeNote = (note) => async (dispatch) => {
+export const changeNote = (noteId, note) => async (dispatch) => {
   try {
-    const newNote = await editNote(note);
+    const newNote = await editNote(noteId, note);
 
     dispatch({ type: EDIT_NOTE_SUCCESS, payload: newNote });
   } catch (error) {
