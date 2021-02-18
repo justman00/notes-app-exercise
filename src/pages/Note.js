@@ -1,7 +1,8 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Route, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Heading, Box, Text, Flex, Button } from '@chakra-ui/react';
+import DeleteNoteModal from '../components/DeleteNoteModal';
 
 function Note() {
   const params = useParams();
@@ -40,17 +41,22 @@ function Note() {
             Edit
           </Button>
         </Link>
-        <Button
-          backgroundColor="red.600"
-          color="white"
-          textAlign="center"
-          w="120px"
-          display="block"
-          mb="16px"
-        >
-          Delete
-        </Button>
+        <Link to={`/notes/${currentNote.ref.value.id}/delete`}>
+          <Button
+            backgroundColor="red.600"
+            color="white"
+            textAlign="center"
+            w="120px"
+            display="block"
+            mb="16px"
+          >
+            Delete
+          </Button>
+        </Link>
       </Box>
+      <Switch>
+        <Route path="/notes/:id/delete" exact component={DeleteNoteModal} />
+      </Switch>
     </Flex>
   );
 }

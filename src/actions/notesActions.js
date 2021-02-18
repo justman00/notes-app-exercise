@@ -24,7 +24,7 @@ export const addNote = (note) => async (dispatch) => {
 
     dispatch({ type: CREATE_NOTE_SUCCESS, payload: newNote });
   } catch (error) {
-    console.error(error)
+    console.error(error);
     dispatch({ type: CREATE_NOTE_FAILURE, payload: error.message });
   }
 };
@@ -38,7 +38,18 @@ export const changeNote = (noteId, note) => async (dispatch) => {
 
     dispatch({ type: EDIT_NOTE_SUCCESS, payload: newNote });
   } catch (error) {
-    console.error(error)
     dispatch({ type: EDIT_NOTE_FAILURE, payload: error.message });
+  }
+};
+
+export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS';
+export const DELETE_NOTE_FAILURE = 'DELETE_NOTE_FAILURE';
+
+export const removeNote = (noteId) => async (dispatch) => {
+  try {
+    const deletedNote = await deleteNote(noteId);
+    dispatch({ type: DELETE_NOTE_SUCCESS, payload: deletedNote });
+  } catch (error) {
+    dispatch({ type: DELETE_NOTE_FAILURE, payload: error.message });
   }
 };

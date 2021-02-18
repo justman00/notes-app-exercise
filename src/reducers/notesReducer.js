@@ -4,6 +4,7 @@ import {
   FETCH_ACTIONS_FAILURE,
   CREATE_NOTE_SUCCESS,
   EDIT_NOTE_SUCCESS,
+  DELETE_NOTE_SUCCESS,
 } from '../actions/notesActions';
 
 const initialState = {
@@ -50,6 +51,14 @@ export const notesReducer = (state = initialState, action) => {
           }
           return note;
         }),
+      };
+
+    case DELETE_NOTE_SUCCESS:
+      return {
+        ...state,
+        notes: state.notes.filter(
+          (note) => note.ref.value.id !== action.payload.ref.value.id
+        ),
       };
     default:
       return state;
