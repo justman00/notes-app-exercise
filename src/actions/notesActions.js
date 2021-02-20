@@ -69,16 +69,31 @@ export const editNoteAction = (noteId, note) => {
 export const DELETE_NOTE_ERROR = 'DELETE_NOTE_ERROR';
 export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS';
 
+// export const deleteNoteAction = (noteId) => {
+//   return async (dispatch) => {
+//     try {
+//       const deletedNote = await deleteNote(noteId);
+//       dispatch({ type: DELETE_NOTE_SUCCESS, payload: deletedNote });
+//     } catch (error) {
+//       dispatch({
+//         type: DELETE_NOTE_ERROR,
+//         payload: 'Ceva nu a mers bine',
+//       });
+//     }
+//   };
+// };
+
 export const deleteNoteAction = (noteId) => {
-  return async (dispatch) => {
-    try {
-      const deletedNote = await deleteNote(noteId);
-      dispatch({ type: DELETE_NOTE_SUCCESS, payload: deletedNote });
-    } catch (error) {
-      dispatch({
-        type: DELETE_NOTE_ERROR,
-        payload: 'Ceva nu a mers bine',
+  return (dispatch) => {
+    deleteNote(noteId)
+      .then((deletedNote) => {
+        dispatch({ type: DELETE_NOTE_SUCCESS, payload: deletedNote });
+      })
+      .catch((error) => {
+        dispatch({
+          type: DELETE_NOTE_ERROR,
+          payload: 'Ceva nu a mers bine',
+        });
       });
-    }
   };
 };
