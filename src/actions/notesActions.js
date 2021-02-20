@@ -1,4 +1,4 @@
-import { getAllNotes, createNote } from '../api';
+import { getAllNotes, createNote, editNote, deleteNote } from '../api';
 
 export const GET_NOTES_LOADING_START = 'GET_NOTES_LOADING_START';
 export const GET_NOTES_SUCCESS = 'GET_NOTES_SUCCESS';
@@ -38,11 +38,45 @@ export const createNoteAction = (note) => {
       const createdNote = await createNote(note);
       dispatch({
         type: CREATE_NOTE_SUCCESS,
-        payload: createdNote
-      })
+        payload: createdNote,
+      });
     } catch (error) {
       dispatch({
         type: CREATE_NOTE_ERROR,
+        payload: 'Ceva nu a mers bine',
+      });
+    }
+  };
+};
+
+export const EDIT_NOTE_ERROR = 'EDIT_NOTE_ERROR';
+export const EDIT_NOTE_SUCCESS = 'EDIT_NOTE_SUCCESS';
+
+export const editNoteAction = (noteId, note) => {
+  return async (dispatch) => {
+    try {
+      const editedNote = await editNote(noteId, note);
+      dispatch({ type: EDIT_NOTE_SUCCESS, payload: editedNote });
+    } catch (error) {
+      dispatch({
+        type: EDIT_NOTE_ERROR,
+        payload: 'Ceva nu a mers bine',
+      });
+    }
+  };
+};
+
+export const DELETE_NOTE_ERROR = 'DELETE_NOTE_ERROR';
+export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS';
+
+export const deleteNoteAction = (noteId) => {
+  return async (dispatch) => {
+    try {
+      const deletedNote = await deleteNote(noteId);
+      dispatch({ type: DELETE_NOTE_SUCCESS, payload: deletedNote });
+    } catch (error) {
+      dispatch({
+        type: DELETE_NOTE_ERROR,
         payload: 'Ceva nu a mers bine',
       });
     }

@@ -3,6 +3,8 @@ import {
   GET_NOTES_SUCCESS,
   GET_NOTES_ERROR,
   CREATE_NOTE_SUCCESS,
+  EDIT_NOTE_SUCCESS,
+  DELETE_NOTE_SUCCESS,
 } from '../actions/notesActions';
 
 const initialState = {
@@ -37,6 +39,29 @@ const notesReducer = (state = initialState, action) => {
         loading: false,
         error: '',
         notes: [...state.notes, action.payload],
+      };
+    case EDIT_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        notes: state.notes.map((note) => {
+          if (note.ref.value.id === action.payload.ref.value.id) {
+            // inlocuirea
+            return action.payload;
+          }
+
+          return note;
+        }),
+      };
+    case DELETE_NOTE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: '',
+        notes: state.notes.filter(
+          (note) => note.ref.value.id !== action.payload.ref.value.id
+        ),
       };
     default:
       return state;

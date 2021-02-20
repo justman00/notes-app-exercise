@@ -6,6 +6,8 @@ import { useDispatch } from 'react-redux';
 import Home from './pages/Home';
 import CreateNote from './pages/CreateNote';
 import { getNotesAction } from './actions/notesActions';
+import Note from './pages/Note';
+import EditNote from './pages/EditNote';
 
 // const theme = {
 //   blue: {
@@ -48,6 +50,8 @@ function App() {
         </Box>
         <Box width="70%" p="36px">
           <Switch>
+            <Route path="/notes/:id/edit" component={EditNote} />
+            <Route path="/notes/:id" component={Note} />
             <Route path="/create-note" component={CreateNote} />
             <Route path="/" component={Home}></Route>
           </Switch>

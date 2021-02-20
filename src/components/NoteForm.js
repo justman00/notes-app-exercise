@@ -7,7 +7,12 @@ const initialState = {
   tags: [],
 };
 
-function NoteForm({ inputValues = initialState, onSubmitCallback }) {
+function NoteForm({
+  inputValues = initialState,
+  onSubmitCallback,
+  secondaryButtonClickAction,
+  showCancelButton = false,
+}) {
   const [value, setValue] = React.useState(inputValues);
 
   const handleInputChange = (e) => {
@@ -36,9 +41,22 @@ function NoteForm({ inputValues = initialState, onSubmitCallback }) {
           placeholder="Detaliile notitei"
           size="sm"
           mb="24px"
+          minHeight="400px"
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" marginRight="24px">
+          Submit
+        </Button>
+        {showCancelButton ? (
+          <Button
+            onClick={secondaryButtonClickAction}
+            backgroundColor="red.600"
+            color="white"
+            type="button"
+          >
+            Cancel
+          </Button>
+        ) : null}
       </form>
     </div>
   );
