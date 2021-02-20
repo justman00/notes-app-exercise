@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import NoteCard from '../components/NoteCard';
 
 function Home() {
-  const { notes, loading } = useSelector((state) => ({
+const { notes, loading } = useSelector((state) => ({
     notes: state.notes,
     loading: state.loading,
   }));

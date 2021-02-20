@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom';
 import { Box, Text } from '@chakra-ui/react';
 
 function NoteCard({ note }) {
-  if(!note) {
-    return null
+  if (!note || !note.data.title || !note.data.content) {
+    return null;
   }
 
   return (
     <Link to={`/notes/${note.ref.value.id}`}>
       <Box
+        data-testid="note-card"
         width="250px"
         overflow="hidden"
         padding="12px"
