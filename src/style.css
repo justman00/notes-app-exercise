@@ -46,10 +46,11 @@ li {
   margin: 30px;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 .card {
   border-radius: 5px;
-  margin: 4px;
+  margin: 8px;
   font-size: small;
   padding: 10px;
   background-color: #000000;
@@ -58,6 +59,11 @@ li {
   height: 10em;
   overflow: hidden;
   border: 0.5px solid rgb(0, 195, 255);
+}
+.card:hover {
+  background-color: #07011f;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  transition: 0.4s;
 }
 .title {
   color: #aa170f;
@@ -79,4 +85,169 @@ li {
   display: inline-block;
   margin-right: 3px;
   color: #aa170f;
+}
+.notice-box {
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 33%;
+  padding: 3%;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+.element-box {
+  margin: 3px;
+  padding: 2px;
+  background-color: rgb(29, 0, 19);
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  align-items: center;
+}
+.title-box {
+  background-color: #ebb70e;
+  color: #aa170f;
+}
+.tagsEdit {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+.tagEdit {
+  display: inline-block;
+  margin: 2px;
+  color: #ebb70e;
+  border: 1px solid red;
+  padding: 3px;
+  height: 1em;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tagEdit:hover {
+  color: #09b417;
+  transition: 0.4s;
+  cursor: pointer;
+  background-color: rgba(34, 33, 33, 0.5);
+}
+
+.button-box {
+  margin: 20px 5px 0px 2px;
+  border-radius: 3px;
+}
+
+/*button*/
+.glow-on-hover {
+  border-radius: 5px;
+  font-size: 10px;
+  padding: 5px 15px;
+  margin: 20px 5px 0px 2px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border: 1px solid #00ffd5;
+}
+
+.glow-on-hover:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.glow-on-hover:active {
+  color: #000;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 5px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.addNotice {
+  width: 30%;
+  margin: auto;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: #212d3a;
+}
+.addNotice form {
+  display: flex;
+  flex-direction: column;
+}
+
+.listSelected {
+  margin-top: 5px;
+  text-align: center;
+  color: #ff4136;
+}
+.listSelected li {
+  background-color: rgba(0, 0, 0, 0.425);
+  margin: 2px 0px;
+  border-radius: 4px;
+}
+.addNoticeButton{
+  width: 32%;
+  padding: 4px;
+  margin-top: 10px;
+  margin-left: 34%;
+  cursor: pointer;
+}
+.addNoticeButton:hover{
+box-shadow: indigo 0px 0px 4px 4px;
+
+
 }

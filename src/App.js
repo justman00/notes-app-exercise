@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { getAllNotes, deleteNote, editNote } from "./api";
+import React from "react";
 import Home from "./pages/Home";
 import AddNotice from "./pages/AddNotice";
 import { Route, Switch, Link } from "react-router-dom";
 import "./style.css";
+import Notice from "./pages/Notice";
 function App() {
   return (
     <div className="App">
@@ -27,6 +27,9 @@ function App() {
         </Route>
         <Route exact path="/add">
           <AddNotice />
+        </Route>
+        <Route path="/edit-notice:id">
+          <Notice />
         </Route>
       </Switch>
     </div>
