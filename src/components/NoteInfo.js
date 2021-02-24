@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import ReactDOM from "react-dom";
-import { useHistory, useParams, Link, Switch, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useParams, Link, Route, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,7 +11,8 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-import EditNote from './EditNote';
+import UpdateNote from "./../pages/EditNote";
+import {removeNote} from './../actions/DELETE_NOTE';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -48,9 +49,16 @@ const NoteInfo = () => {
   const history = useHistory();
 
   const selectedNote = notes.find((note) => note.ref.value.id === params.id);
+  const dispatch = useDispatch();
 
   if (!selectedNote) {
     return <h3>Nu exista asa notita</h3>;
+  }
+
+  const handleDelete = () => {
+      dispatch(removeNote(selectedNote.ref.value.id)).then(
+        history.push('/')
+      )
   }
 
   return ReactDOM.createPortal(
@@ -87,14 +95,17 @@ const NoteInfo = () => {
           width: "600px",
           paddingTop: "10px",
           paddingBottom: "10px",
-          paddingLeft: '10px',
+          paddingLeft: "10px",
           borderRadius: "0 0 10px 10px",
           borderTop: "2px solid gray",
           outline: "none",
           backgroundColor: "#c5e8b3",
         }}
       >
-        <Link to = {`/notes/${selectedNote.ref.value.id}/edit`}>
+        <Link
+          to={`/notes/${selectedNote.ref.value.id}/edit`}
+          style={{ textDecoration: "none" }}
+        >
           <Button
             variant="contained"
             color="primary"
@@ -109,14 +120,22 @@ const NoteInfo = () => {
           color="secondary"
           size="small"
           className={classes.button}
-          onClick={() => history.push("/")}
+          onClick = {handleDelete}
         >
-          Cancel
+          Delete
         </Button>
+        <Link to={"/"} style={{ textDecoration: "none" }}>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="small"
+            className={classes.button}
+          >
+            Cancel
+          </Button>
+        </Link>
       </div>
-      <Switch>
-        <Route path="notes/:id/edit" component={EditNote} />
-      </Switch>
+      <Route path="/notes/:id/edit" component={UpdateNote} />
     </StyledDiv>,
     document.querySelector("#modal_window")
   );

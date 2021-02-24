@@ -59,7 +59,7 @@ const CreateBar = () => {
   const inputRef = useRef();
   const contentRef = useRef();
 
-  const MAX_LENGTH = 1705;
+  const MAX_LENGTH = 1200;
 
   const classes = useStyles();
 
@@ -78,6 +78,7 @@ const CreateBar = () => {
     inputRef.current.value = "";
     contentRef.current.value = "";
     setIsClicked(false);
+    setLength(0);
   };
 
   return (
@@ -121,6 +122,7 @@ const CreateBar = () => {
             size="small"
             className={classes.button}
             onClick={() => {
+              setLength(0);
               inputRef.current.value = "";
               contentRef.current.value = "";
               setIsClicked(false);

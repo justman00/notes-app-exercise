@@ -11,9 +11,7 @@ function App() {
     <div className="App">
       <CreateBar />
       <Switch>
-        <Route path="/">
-          <Notes />
-        </Route>
+        <Route path="/" component={Notes} />
       </Switch>
     </div>
   );
