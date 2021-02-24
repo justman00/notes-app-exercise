@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import CreateBar from "./components/CreateBar";
 import Notes from "./components/Notes";
 
+
 import "./App.css";
 
 function App() {
