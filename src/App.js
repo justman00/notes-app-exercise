@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { getAllNotes, deleteNote, editNote } from './api';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+
+import CreateBar from "./components/CreateBar";
+import Notes from "./components/Notes";
+
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-container">
-        <div>
-          Bine ati venit la <strong>StepIt Notes</strong>
-        </div>
-      </header>
+      <CreateBar />
+      <Switch>
+        <Route path="/" component={Notes} />
+      </Switch>
     </div>
   );
 }

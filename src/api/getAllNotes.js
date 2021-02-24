@@ -1,6 +1,6 @@
 import { client, q } from '../config/db'
 
-const getAllNotes = client.query(
+const getAllNotes = () => client.query(
   q.Paginate(
     q.Match(
       q.Ref('indexes/notes')))
