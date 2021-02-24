@@ -4,7 +4,7 @@ import { Container, Button, Textarea, Input } from "@chakra-ui/react";
 const initialState = {
   title: "",
   content: "",
-  tags: "",
+  tags: [],
 };
 
 const NoteForm = ({
@@ -47,7 +47,7 @@ const NoteForm = ({
           name="tags"
           value={value.tags}
           onChange={handleInputChange}
-          placeholder="business, lifestyle, programming, etc."
+          placeholder="business, lifestyle, science, technology etc."
           mb="20px"
         />
 

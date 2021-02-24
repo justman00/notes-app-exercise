@@ -33,10 +33,11 @@ const NoteCard = ({ note }) => {
         >
           {note.data.content}
         </Text>
-
-        {/* {note.data.tags.split(/\W/).map((tag) => {
-          return <Text fontWeight="semibold">#{tag}</Text>;
-        })}*/}
+        {note.data.tags ? (
+          <Text fontWeight="semibold">{note.data.tags}</Text>
+        ) : (
+          ""
+        )}
       </Box>
     </Link>
   );

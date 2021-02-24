@@ -12,7 +12,7 @@ const NotesList = (props) => {
         </Text>
       ) : null}
       {props.notes
-        .sort((a, b) => b.ts - a.ts)
+        .sort((a, b) => a.ts - b.ts)
         .map((note, idx) => {
           console.log("note:", note);
           return <NoteCard key={idx} note={note} />;

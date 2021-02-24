@@ -44,7 +44,11 @@ const Note = (props) => {
           </Text>
 
           <Text>{currentNote.data.content}</Text>
-          <Text>{currentNote.data.tags}</Text>
+          {currentNote.data.tags ? (
+            <Text fontWeight="semibold">{currentNote.data.tags}</Text>
+          ) : (
+            ""
+          )}
         </Box>
 
         <Box w="20%">
@@ -60,7 +64,7 @@ const Note = (props) => {
               Edit
             </Button>
           </Link>
-          <Link to={`/delete-note/${currentNote.ref.value.id}`}>
+          <Link to={`/note/${currentNote.ref.value.id}/delete`}>
             <Button
               backgroundColor="red.600"
               color="white"
@@ -73,10 +77,10 @@ const Note = (props) => {
             </Button>
           </Link>
         </Box>
-        <Switch>
-          <Route exact path="/delete-note/:id" component={DeleteModal} />
-        </Switch>
       </Flex>
+      <Switch>
+        <Route exact path="/note/:id/delete" component={DeleteModal} />
+      </Switch>
     </Container>
   );
 };

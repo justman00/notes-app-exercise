@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, Switch } from "react-router-dom";
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
 import Home from "./pages/Home";
 import NotesList from "./pages/NotesList";
@@ -47,24 +47,20 @@ function App() {
             </NavLink>
           </Box>
         </Flex>
-
-        <Route exact path="/" component={Home} />
-        <Route
-          exact
-          path="/notes-list"
-          render={(props) => <NotesList {...props} />}
-        />
-        <Route exact path="/note/:id" render={(props) => <Note {...props} />} />
-        <Route
-          exact
-          path="/edit-note/:id"
-          render={(props) => <EditNote {...props} />}
-        />
-        <Route
-          exact
-          path="/add-note"
-          render={(props) => <AddNote {...props} />}
-        />
+        <Switch>
+          <Route
+            path="/notes-list"
+            render={(props) => <NotesList {...props} />}
+          />
+          <Route path="/note/:id" render={(props) => <Note {...props} />} />
+          <Route
+            path="/edit-note/:id"
+            render={(props) => <EditNote {...props} />}
+          />
+          <Route path="/add-note" render={(props) => <AddNote {...props} />} />
+          <Route path="/" component={Home} />
+          <Route>Hello World!</Route>
+        </Switch>
       </Box>
     </div>
   );
