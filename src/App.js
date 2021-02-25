@@ -22,14 +22,14 @@ function App() {
         </nav>
       </header>
       <Switch>
-        <Route exact path="/home">
-          <Home />
-        </Route>
         <Route exact path="/add">
           <AddNotice />
         </Route>
-        <Route path="/edit-notice:id">
+        <Route path="/notice/:id">
           <Notice />
+        </Route>
+        <Route path="/">
+          <Home />
         </Route>
       </Switch>
     </div>

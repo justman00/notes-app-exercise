@@ -5,13 +5,15 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 const Home = (props) => {
   const history = useHistory();
+  const { actionGetNotes } = props;
+
   useEffect(() => {
-    props.actionGetNotes();
-  }, []);
+    actionGetNotes();
+  }, [actionGetNotes]);
 
   const routeToEdit = (note) => {
     history.push({
-      pathname: `/edit-notice:id${note.ref.value.id}`,
+      pathname: `/notice/${note.ref.value.id}`,
       state: { data: note },
     });
   };
@@ -19,7 +21,7 @@ const Home = (props) => {
   return (
     <div>
       {props.notes.length < 1 ? (
-        <div>Loading</div>
+        <div className="loader"></div>
       ) : (
         <div className="notes">
           {props.notes.map((note) => (
@@ -42,10 +44,7 @@ const Home = (props) => {
               <div>
                 <div className="cardAtribut">Tags :</div>
                 {note.data.tags.map((tag) => (
-                  <div
-                    key={Math.floor(Math.random() * 100 + Math.random())}
-                    className="tag"
-                  >
+                  <div key={tag} className="tag">
                     {tag}
                   </div>
                 ))}

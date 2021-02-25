@@ -1,25 +1,35 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-
+import { Link, Route, Switch, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import DeleteModal from "../component/DeleteModal";
+import { actionGetNote } from "../actions/ActionGetNotes";
+import { useEffect } from "react";
 const Notice = () => {
-  const location = useLocation();
+  const params = useParams();
+  const dispatch = useDispatch();
 
-  const dates = location.state.data.data;
-  console.log("...>..", dates);
-  return (
+  useEffect(() => {
+    dispatch(actionGetNote(params.id));
+  }, [dispatch, params.id]);
+
+  const note = useSelector((state) => state.note);
+
+  return Object.keys(note).length === 0 ? (
+    <div className="loader"></div>
+  ) : (
     <div className="notice-box">
       <div>
         <div className="element-box title-box">
-          <div>{dates.title}</div>
+          <div>{note.data.title}</div>
         </div>
 
         <div className="element-box">
-          <p>{dates.content}</p>
+          <p>{note.data.content}</p>
         </div>
 
         <div className="element-box">
           <div className="tagsEdit">
-            {dates.tags.map((tag) => (
+            {note.data.tags.map((tag) => (
               <div
                 className="tagEdit"
                 key={Math.floor(Math.random() * 100 + Math.random())}
@@ -29,8 +39,15 @@ const Notice = () => {
             ))}
           </div>
         </div>
+
         <button className="glow-on-hover">Edit</button>
-        <button className="glow-on-hover">Delete</button>
+
+        <Link to={`/notice/${params.id}/delete`}>
+          <button className="glow-on-hover">Delete</button>
+        </Link>
+        <Switch>
+          <Route path="/notice/:id/delete" component={DeleteModal} />
+        </Switch>
       </div>
     </div>
   );
