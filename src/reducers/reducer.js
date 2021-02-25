@@ -15,11 +15,13 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         notes: state.notes.map((note) => {
+
           if (note.ref.value.id === action.payload.ref.value.id) {
             // gasim id-ul notitei editate si inlocuim notita
             return action.payload;
           }
           return note;
+        
         }),
       };
 

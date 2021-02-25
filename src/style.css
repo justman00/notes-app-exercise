@@ -249,6 +249,8 @@ li {
 .addNoticeButton:hover {
   box-shadow: indigo 0px 0px 4px 4px;
 }
+
+/*loading element*/
 .loader {
   margin: auto;
   border: 16px solid #f3f3f3;
@@ -278,6 +280,8 @@ li {
     transform: rotate(360deg);
   }
 }
+
+/*delete modal*/
 .modal-box-root {
   position: relative;
   width: 100%;
@@ -303,6 +307,7 @@ li {
   transform: translate(-50%, -50%);
   border-radius: 8px;
   padding: 32px;
+  text-align: center;
 }
 .modal-button-yes {
   background-color: rgb(230, 15, 15);
@@ -322,7 +327,83 @@ li {
   border: rgb(0, 0, 0) solid 2px;
   width: 40px;
 }
+/* Edit modal*/
 .modal-buttons {
   margin-top: 1em;
   text-align: center;
+}
+.modal-button-apply {
+  background-color: rgb(49, 172, 0);
+  color: rgb(255, 255, 255);
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: rgb(0, 0, 0) solid 2px;
+  width: 60px;
+}
+.modal-button-cancel {
+  background-color: rgb(49, 172, 0);
+  color: rgb(255, 255, 255);
+  margin: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: rgb(0, 0, 0) solid 2px;
+  width: 60px;
+}
+.modal-box-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  /* border: 1px solid rgb(255, 255, 255); */
+  width: 16em;
+  padding: 2px;
+}
+.modal-box-form-element {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  background-color: rgb(192, 201, 201);
+  padding: 4px;
+}
+.tag-label {
+  display: flex;
+  align-items: center;
+}
+
+.taglist {
+  display: flex;
+  margin: 6px 0px;
+  flex-wrap: nowrap;
+}
+.modal-box-tag-list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.element {
+  margin: 0px 5px;
+}
+.modal-box-tag-element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(0, 217, 233);
+  font-size: 10px;
+  margin: 1px 4px;
+  border-radius: 10px;
+  overflow: hidden;
+  color: #000;
+  width: 200px;
+}
+.element-remove {
+  display: flex;
+  height: 80%;
+  width: 20px;
+  justify-content: center;
+  background-color: orangered;
+  color: white;
+  cursor: pointer;
+}
+.element-remove:hover {
+  background-color: rgb(184, 49, 0);
 }

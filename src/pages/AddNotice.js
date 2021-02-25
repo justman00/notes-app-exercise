@@ -50,7 +50,7 @@ const AddNotice = () => {
 
           <label>Tags</label>
 
-          <select name="tags" id="cars" onChange={setData}>
+          <select name="tags" onChange={setData}>
             <option value="bussines ">bussines</option>
             <option value="dezvoltare-personala">dezvoltare-personala</option>
             <option value="actorie">actorie</option>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DeleteModal from "../component/DeleteModal";
 import { actionGetNote } from "../actions/ActionGetNotes";
 import { useEffect } from "react";
+import EditModal from "../component/EditModal";
 const Notice = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -30,26 +31,34 @@ const Notice = () => {
         <div className="element-box">
           <div className="tagsEdit">
             {note.data.tags.map((tag) => (
-              <div
-                className="tagEdit"
-                key={Math.floor(Math.random() * 100 + Math.random())}
-              >
+              <div className="tagEdit" key={tag}>
                 {tag}
               </div>
             ))}
           </div>
         </div>
 
-        <button className="glow-on-hover">Edit</button>
+        <Link to={`/notice/${params.id}/edit`}>
+          <button className="glow-on-hover">Edit</button>
+        </Link>
 
         <Link to={`/notice/${params.id}/delete`}>
           <button className="glow-on-hover">Delete</button>
         </Link>
+
         <Switch>
           <Route path="/notice/:id/delete" component={DeleteModal} />
+          <Route
+            path="/notice/:id/edit"
+            render={(props) => <EditModal {...props} date={note} />}
+          />
+
         </Switch>
       </div>
     </div>
   );
 };
 export default Notice;
+
+
+
