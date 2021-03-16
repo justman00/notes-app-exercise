@@ -1,13 +1,13 @@
 import React from "react";
-import { Box } from "@chakra-ui/react";
 
 const Home = (props) => {
   return (
-    <Box w="800px" h="615px">
+    <div style={{textAlign:"center", marginBottom:"30px"}}>
       <svg
         id="eaf12ff7-9aea-44ad-af08-a969a429ad47"
         data-name="Layer 1"
         xmlns="http://www.w3.org/2000/svg"
+        style={{display:"block",margin:"auto", width:"800px", height:"615px"}}
         width="1019.24603"
         height="807.87977"
         viewBox="0 0 1019.24603 807.87977"
@@ -186,7 +186,7 @@ const Home = (props) => {
           fill="#a0616a"
         />
       </svg>
-    </Box>
+    </div>
   );
 };
 export default Home;
