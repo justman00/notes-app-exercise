@@ -55,7 +55,7 @@ function Note() {
         </Link>
       </Box>
       <Switch>
-        <Route path="/notes/:id/delete" component={DeleteModal} />
+        <Route path="/notes/:id/delete" component={DeleteModal} /> {/* private */}
       </Switch>
     </Flex>
   );
