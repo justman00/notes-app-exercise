@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Route, Switch, NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Route, Switch, NavLink, useHistory } from 'react-router-dom';
 import { Flex, Box, Heading, Link } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 
@@ -8,6 +8,8 @@ import CreateNote from './pages/CreateNote';
 import { getNotesAction } from './actions/notesActions';
 import Note from './pages/Note';
 import EditNote from './pages/EditNote';
+import Login from './pages/Login';
+import PrivateRoute from './components/PrivateRoute';
 
 // const theme = {
 //   blue: {
@@ -16,7 +18,25 @@ import EditNote from './pages/EditNote';
 // }
 
 function App() {
+  const history = useHistory();
+  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetch('http://localhost:5000/')
+      .then((res) => res.json())
+      .then((res) => {
+        console.log('res', res);
+        setLoading(false);
+        setIsAuthenticated(true);
+      })
+      .catch((err) => {
+        console.log('err', err);
+        setLoading(false);
+        history.push('/login');
+      });
+  }, [history]);
 
   useEffect(() => {
     dispatch(getNotesAction());
@@ -50,10 +70,27 @@ function App() {
         </Box>
         <Box width="70%" p="36px">
           <Switch>
-            <Route path="/notes/:id/edit" component={EditNote} />
-            <Route path="/notes/:id" component={Note} />
-            <Route path="/create-note" component={CreateNote} />
-            <Route path="/" component={Home}></Route>
+            <PrivateRoute
+              path="/notes/:id/edit"
+              component={EditNote}
+              isAuthenticated={isAuthenticated}
+            />
+            <PrivateRoute
+              path="/notes/:id"
+              component={Note}
+              isAuthenticated={isAuthenticated}
+            />
+            <PrivateRoute
+              path="/create-note"
+              component={CreateNote}
+              isAuthenticated={isAuthenticated}
+            />
+            <Route path="/login" component={Login} />
+            <PrivateRoute
+              path="/"
+              component={Home}
+              isAuthenticated={isAuthenticated}
+            />
           </Switch>
         </Box>
       </Flex>
