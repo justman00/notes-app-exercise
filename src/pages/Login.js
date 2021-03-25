@@ -19,7 +19,6 @@ function Login({ setIsAuthenticated }) {
 
     fetch(`http://localhost:5000/api/auth/login`, {
       method: 'POST',
-      credentials: 'include',
       body: JSON.stringify({
         email,
         password,
@@ -31,12 +30,15 @@ function Login({ setIsAuthenticated }) {
     }).then((res) => {
       if (res.status === 200) {
         // eu sunt logat
-        setIsAuthenticated(true);
-        return history.push('/');
+        return res.json();
       }
 
       setError('Invalid credentials');
-    });
+    }).then(data => {
+      localStorage.setItem('token', data.token);
+      setIsAuthenticated(true);
+      return history.push('/');
+    })
   };
 
   return (

@@ -23,7 +23,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = get('token');
+    const token = localStorage.getItem('token');
 
     fetch(`http://localhost:5000/api/auth/check-auth`, {
       headers: {

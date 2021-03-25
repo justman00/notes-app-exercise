@@ -15,6 +15,11 @@ export const getNotesAction = () => {
 
     try {
       const notes = await getAllNotes();
+      const serverNotes = await fetch(`http://localhost:5000/api/notes`, {
+        headers: {
+          Authorization: localStorage.getItem('token'),
+        },
+      }).then((res) => res.json());
 
       dispatch({
         type: GET_NOTES_SUCCESS,
