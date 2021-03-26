@@ -92,16 +92,24 @@ function Login({ setIsAuthenticated }) {
 
         {error && <div style={{ fontSize: "12px", color: "red" }}>{error}</div>}
 
-        <Button type="submit" colorScheme="teal" size="md" mt="2">
+        <Button type="submit" colorScheme="teal" size="md" mt="2" mb="2">
           Submit
         </Button>
       </form>
       <hr />
-      <Box>
+      <Box mt="2" mb="2">
         <Link to={`/register`}>
-          <Text>Have Account? Register </Text>
+          <Text
+            fontSize="medium"
+            align="center"
+            fontWeight="bold"
+            textColor="blue.600"
+          >
+            Have Account? Register{" "}
+          </Text>
         </Link>
       </Box>
+      <hr />
     </Container>
   );
 }

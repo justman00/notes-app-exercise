@@ -5,7 +5,6 @@ import {
   Text,
   FormControl,
   FormLabel,
-  FormHelperText,
   Input,
   InputGroup,
   Button,
@@ -55,6 +54,7 @@ function Register() {
         setError("Invalid credentials.");
       })
       .then((data) => {
+        // console.log("data: ", data);
         return history.push("/login");
       });
   };
@@ -82,7 +82,6 @@ function Register() {
             value={email}
             onChange={handleEmailChange}
           />
-          <FormHelperText>We'll never share your email.</FormHelperText>
         </FormControl>
 
         <FormControl id="password" isRequired>

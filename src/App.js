@@ -1,7 +1,23 @@
 import React, { useEffect } from "react";
 import { Route, NavLink, Switch } from "react-router-dom";
-import { Flex, Box, Text, Button } from "@chakra-ui/react";
+import {
+  Flex,
+  Box,
+  Text,
+  Button,
+  IconButton,
+  Popover,
+  PopoverTrigger,
+  Portal,
+  PopoverContent,
+  PopoverArrow,
+  PopoverHeader,
+  PopoverCloseButton,
+  PopoverBody,
+  PopoverFooter,
+} from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
+import { BsFillPersonFill } from "react-icons/bs";
 //import { get } from "es-cookie";
 
 import Home from "./pages/Home";
@@ -48,6 +64,12 @@ function App() {
     dispatch(getNotesAction());
   }, [dispatch]);
 
+  const handleLogOutClick = (e) => {
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
+    //return history.push("/");
+  };
+
   return (
     <div>
       <Box>
@@ -77,6 +99,31 @@ function App() {
                 Add Note
               </Button>
             </NavLink>
+          </Box>
+          <Box>
+            <Popover>
+              <PopoverTrigger>
+                <IconButton
+                  colorScheme="teal"
+                  aria-label="User"
+                  size="md"
+                  icon={<BsFillPersonFill />}
+                />
+              </PopoverTrigger>
+              <Portal>
+                <PopoverContent>
+                  <PopoverArrow />
+                  <PopoverHeader>Profile</PopoverHeader>
+                  <PopoverCloseButton />
+                  <PopoverBody>Settings</PopoverBody>
+                  <PopoverFooter>
+                    <Button colorScheme="red" onClick={handleLogOutClick}>
+                      Log out
+                    </Button>
+                  </PopoverFooter>
+                </PopoverContent>
+              </Portal>
+            </Popover>
           </Box>
         </Flex>
         <Switch>
