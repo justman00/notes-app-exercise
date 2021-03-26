@@ -1,15 +1,17 @@
-import deleteNote from './../api/deleteNote';
-
 export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS';
 export const DELETE_NOTE_ERROR = 'DELETE_NOTE_ERROR';
 
 export const removeNote = (noteId) => {
     return async(dispatch) => {
         try {
-            const deletedNote = await deleteNote(noteId);
-            dispatch({
-                type: DELETE_NOTE_SUCCESS,
-                payload: deletedNote
+            //const deletedNote = await deleteNote(noteId);
+            fetch(`https://keeping-note.herokuapp.com/api/notes/${noteId}`, {
+                method: 'DELETE'
+            }).then((deletedNote) => {
+                dispatch({
+                    type: DELETE_NOTE_SUCCESS,
+                    payload: deletedNote
+                })
             })
         } catch (error) {
             dispatch({

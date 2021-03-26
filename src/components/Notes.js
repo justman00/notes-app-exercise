@@ -12,7 +12,7 @@ const StyledMainDiv = styled.div`
   flex-wrap: wrap;
 `;
 
-const Notes = () => {
+const Notes = (props) => {
   const { notes, loading } = useSelector((state) => ({
     notes: state.notes,
     loading: state.loading,
@@ -29,7 +29,7 @@ const Notes = () => {
         {loading ? (
           <h3>Loading notes...</h3>
         ) : (
-          notes.map((note, index) => <NoteCard key={index} note={note} />)
+          notes.map((note, index) => <NoteCard key = {index} note = {note} isAuthenticated = {props.isAuthenticated}/>)
         )} 
     </StyledMainDiv>
   );

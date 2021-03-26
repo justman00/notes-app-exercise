@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -10,7 +10,9 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+
 import NoteInfo from "./NoteInfo";
+import PrivateRoute from './PrivateRoute';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NoteCard = ({ note }) => {
+const NoteCard = ({isAuthenticated ,note }) => {
   const classes = useStyles();
 
   return (
@@ -48,7 +50,7 @@ const NoteCard = ({ note }) => {
         </CardActions>
       </Card>
       <Switch>
-        <Route path="/notes/:id" component={NoteInfo} />
+        <PrivateRoute path="/notes/:id" component = {NoteInfo} isAuthenticated = {isAuthenticated}/>
       </Switch>
     </div>
   );

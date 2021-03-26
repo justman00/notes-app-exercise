@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import ReactDOM from "react-dom";
-import { useParams, Link, Route, useHistory } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -13,6 +13,7 @@ import Button from "@material-ui/core/Button";
 
 import UpdateNote from "./../pages/EditNote";
 import {removeNote} from './../actions/DELETE_NOTE';
+import PrivateRoute from './PrivateRoute';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -41,7 +42,7 @@ const StyledDiv = styled.div`
   z-index: 3;
 `;
 
-const NoteInfo = () => {
+const NoteInfo = (props) => {
   const classes = useStyles();
   const typografyRef = useRef();
   const notes = useSelector((state) => state.notes);
@@ -135,7 +136,7 @@ const NoteInfo = () => {
           </Button>
         </Link>
       </div>
-      <Route path="/notes/:id/edit" component={UpdateNote} />
+      <PrivateRoute path="/notes/:id/edit" component = {UpdateNote} isAuthenticated = {props.isAuthenticated}/> {/*private */}
     </StyledDiv>,
     document.querySelector("#modal_window")
   );
