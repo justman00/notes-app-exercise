@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 const StyledDiv = styled.div `
     position: absolute;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
+    top: 0;
+    left: 0;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -19,6 +22,7 @@ const Login = ({ setAuthenticated }) => {
     const history = useHistory();
 
     const handleClick = (e) => {
+        e.preventDefault();
         fetch('https://keeping-note.herokuapp.com/api/login', { //in aceasta functie se seteaza localstorage
         method: 'POST',
         body: JSON.stringify(formData),
@@ -33,7 +37,7 @@ const Login = ({ setAuthenticated }) => {
         }
   
       }).then(data => {
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('token', data);
         setAuthenticated(true);
         return history.push('/');
         })
@@ -52,7 +56,7 @@ const Login = ({ setAuthenticated }) => {
                 <input placeholder = "username" name = "username" onChange = {handleChange}></input>
                 <input placeholder = "password" name = "password" type = "password" onChange = {handleChange}></input>
                 <button onClick = {handleClick}>Login</button>
-                <button>Register</button>
+                <Link to = '/register'><button>Register</button></Link>
             </form>
         </StyledDiv>
     )

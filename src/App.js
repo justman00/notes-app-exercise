@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import CreateBar from "./components/CreateBar";
 import Notes from "./components/Notes";
 import Login from "./pages/Login";
+import Register from './pages/Register';
 import PrivateRoute from "./components/PrivateRoute";
 
 import "./App.css";
@@ -35,11 +36,18 @@ function App() {
       {isAuthenticated ? (<CreateBar />) : null}
       <Switch>
         <PrivateRoute
-          path = "/"
+          exact path = "/"
           component = {Notes}
           isAuthenticated = {isAuthenticated}
         />
-        <Route path="/login" component = {Login} SetAuthenticated = {setAuthenticated}/>
+        <Route exact path="/login"
+              render={(props) => (
+                <Login {...props} setAuthenticated={setAuthenticated} />
+              )} />
+        <Route exact path="/register"
+              render={(props) => (
+                <Register {...props}/>
+              )} />
       </Switch>
     </div>
   );

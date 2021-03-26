@@ -4,21 +4,24 @@ export const ADD_NOTE_ERROR = 'ADD_NOTE_ERROR';
 export const addNote = (note) => {
     return async (dispatch) => {
         try {
-            const createdNote = await fetch('https://keeping-note.herokuapp.com/api/notes', {
+            await fetch('https://keeping-note.herokuapp.com/api/notes', {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
                     Authorization: localStorage.getItem('token'),
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: note,
+                body: JSON.stringify(note),
+            }).then((res) => {
+                return res.json();
+            }).then((createdNote) => {
+                dispatch({
+                    type: ADD_NOTE_SUCCESS,
+                    payload: createdNote
+                })
             })
-            console.log('created note: ',createdNote)
             
-            dispatch({
-                type: ADD_NOTE_SUCCESS,
-                payload: createdNote
-            })
             
         } catch (error) {
             dispatch({
