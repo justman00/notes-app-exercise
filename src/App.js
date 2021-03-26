@@ -117,7 +117,11 @@ function App() {
                   <PopoverCloseButton />
                   <PopoverBody>Settings</PopoverBody>
                   <PopoverFooter>
-                    <Button colorScheme="red" onClick={handleLogOutClick}>
+                    <Button
+                      colorScheme="red"
+                      size="sm"
+                      onClick={handleLogOutClick}
+                    >
                       Log out
                     </Button>
                   </PopoverFooter>

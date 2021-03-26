@@ -46,7 +46,6 @@ function Login({ setIsAuthenticated }) {
     })
       .then((res) => {
         if (res.status === 200) {
-          console.log("login result: ", res);
           return res.json();
         }
         setError("Invalid credentials.");
@@ -60,7 +59,13 @@ function Login({ setIsAuthenticated }) {
 
   return (
     <Container>
-      <Text fontSize="x-large" align="center" mt="4">
+      <Text
+        fontSize="x-large"
+        fontWeight="hairline"
+        textColor="blue.600"
+        align="center"
+        mt="4"
+      >
         Log In
       </Text>
       <form onSubmit={handleSubmit}>
@@ -95,21 +100,21 @@ function Login({ setIsAuthenticated }) {
         <Button type="submit" colorScheme="teal" size="md" mt="2" mb="2">
           Submit
         </Button>
+        <hr />
+        <Box mt="2" mb="2">
+          <Link to={`/register`}>
+            <Text
+              fontSize="medium"
+              align="center"
+              fontWeight="bold"
+              textColor="blue.600"
+            >
+              Have Account? Register{" "}
+            </Text>
+          </Link>
+        </Box>
+        <hr />
       </form>
-      <hr />
-      <Box mt="2" mb="2">
-        <Link to={`/register`}>
-          <Text
-            fontSize="medium"
-            align="center"
-            fontWeight="bold"
-            textColor="blue.600"
-          >
-            Have Account? Register{" "}
-          </Text>
-        </Link>
-      </Box>
-      <hr />
     </Container>
   );
 }

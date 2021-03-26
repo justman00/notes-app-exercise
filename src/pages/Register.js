@@ -61,7 +61,13 @@ function Register() {
 
   return (
     <Container>
-      <Text fontSize="x-large" align="center" mt="4">
+      <Text
+        fontSize="x-large"
+        fontWeight="hairline"
+        textColor="blue.600"
+        align="center"
+        mt="4"
+      >
         Register
       </Text>
       <form onSubmit={handleSubmit}>
