@@ -11,11 +11,11 @@ function EditNote() {
   const params = useParams();
   const notesList = useSelector((state) => state.notes);
 
-  const currentNote = notesList.find((note) => note.ref.value.id === params.id);
-
+  const currentNote = notesList.find((note) => note._id === params.id);
+  // console.log("currentNote:", currentNote);
   const onSubmitCallback = (note) => {
-    const { id } = currentNote.ref.value;
-    dispatch(updateNoteAction(id, note)).then(() => {
+    const note_id = currentNote._id;
+    dispatch(updateNoteAction(note_id, note)).then(() => {
       history.push("/notes-list");
     });
   };
@@ -31,7 +31,7 @@ function EditNote() {
       </Text>
       <NoteForm
         onSubmitCallback={onSubmitCallback}
-        initialNote={currentNote.data}
+        initialNote={currentNote}
         showCancelButton
         onClickCancelButton={onClickCancelButton}
       />

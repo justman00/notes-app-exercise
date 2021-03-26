@@ -14,6 +14,7 @@ const NoteForm = ({
   onClickCancelButton,
 }) => {
   const [value, setValue] = useState(initialNote);
+  //console.log("value", value);
 
   const handleInputChange = (e) => {
     setValue({ ...value, [e.target.name]: e.target.value });

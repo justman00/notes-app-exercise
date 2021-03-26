@@ -13,7 +13,7 @@ const NotesList = (props) => {
         </Text>
       ) : null}
       {props.notes.map((note, idx) => {
-        console.log("note:", note);
+        //console.log("note:", note);
         return <NoteCard key={idx} note={note} />;
       })}
       {props.error ? (

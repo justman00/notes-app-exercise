@@ -31,7 +31,7 @@ export const notesReducer = (state = initialState, action) => {
         loading: false,
         error: "",
         notes: state.notes.map((note) => {
-          if (note.ref.value.id === action.payload.ref.value.id) {
+          if (note._id === action.payload._id) {
             return action.payload;
           }
           return note;
@@ -44,7 +44,7 @@ export const notesReducer = (state = initialState, action) => {
         loading: false,
         error: "",
         notes: state.notes.filter((note) => {
-          return note.ref.value.id !== action.payload.ref.value.id;
+          return note._id !== action.payload._id;
         }),
       };
 

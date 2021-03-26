@@ -8,7 +8,7 @@ const Note = (props) => {
   const params = useParams();
   const notesList = useSelector((state) => state.notes);
 
-  const currentNote = notesList.find((note) => note.ref.value.id === params.id);
+  const currentNote = notesList.find((note) => note._id === params.id);
 
   if (!currentNote) {
     return (
@@ -40,19 +40,19 @@ const Note = (props) => {
             isTruncated
             pb="10px"
           >
-            {currentNote.data.title}
+            {currentNote.title}
           </Text>
 
-          <Text>{currentNote.data.content}</Text>
-          {currentNote.data.tags ? (
-            <Text fontWeight="semibold">{currentNote.data.tags}</Text>
+          <Text>{currentNote.content}</Text>
+          {currentNote.tags ? (
+            <Text fontWeight="semibold">{currentNote.tags}</Text>
           ) : (
             ""
           )}
         </Box>
 
         <Box w="20%">
-          <Link to={`/edit-note/${currentNote.ref.value.id}`}>
+          <Link to={`/edit-note/${currentNote._id}`}>
             <Button
               backgroundColor="teal.600"
               color="white"
@@ -64,7 +64,7 @@ const Note = (props) => {
               Edit
             </Button>
           </Link>
-          <Link to={`/note/${currentNote.ref.value.id}/delete`}>
+          <Link to={`/note/${currentNote._id}/delete`}>
             <Button
               backgroundColor="red.600"
               color="white"
