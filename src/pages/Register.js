@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
 import {
   Container,
-  Box,
   Text,
   FormControl,
   FormLabel,
+  FormHelperText,
   Input,
   InputGroup,
   Button,
   InputRightElement,
 } from "@chakra-ui/react";
 
-function Login({ setIsAuthenticated }) {
+function Register() {
   const history = useHistory();
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = React.useState(false);
   const handlePassClick = () => setShow(!show);
@@ -25,6 +25,10 @@ function Login({ setIsAuthenticated }) {
     setUsername(e.target.value);
   };
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -32,11 +36,11 @@ function Login({ setIsAuthenticated }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`https://notes-app-ecaterina-popa.herokuapp.com/api/auth/login`, {
+    fetch(`https://notes-app-ecaterina-popa.herokuapp.com/api/auth/register`, {
       method: "POST",
-      //credentials: "include",
       body: JSON.stringify({
         username,
+        email,
         password,
       }),
       headers: {
@@ -46,22 +50,19 @@ function Login({ setIsAuthenticated }) {
     })
       .then((res) => {
         if (res.status === 200) {
-          console.log("login result: ", res);
           return res.json();
         }
         setError("Invalid credentials.");
       })
       .then((data) => {
-        localStorage.setItem("token", data.token);
-        setIsAuthenticated(true);
-        return history.push("/notes-list");
+        return history.push("/login");
       });
   };
 
   return (
     <Container>
       <Text fontSize="x-large" align="center" mt="4">
-        Log In
+        Register
       </Text>
       <form onSubmit={handleSubmit}>
         <FormControl id="username" isRequired>
@@ -71,6 +72,17 @@ function Login({ setIsAuthenticated }) {
             value={username}
             onChange={handleUsernameChange}
           />
+        </FormControl>
+
+        <FormControl id="email">
+          <FormLabel>Email address</FormLabel>
+          <Input
+            name="email"
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
+          />
+          <FormHelperText>We'll never share your email.</FormHelperText>
         </FormControl>
 
         <FormControl id="password" isRequired>
@@ -96,13 +108,7 @@ function Login({ setIsAuthenticated }) {
           Submit
         </Button>
       </form>
-      <hr />
-      <Box>
-        <Link to={`/register`}>
-          <Text>Have Account? Register </Text>
-        </Link>
-      </Box>
     </Container>
   );
 }
-export default Login;
+export default Register;

@@ -10,6 +10,7 @@ import AddNote from "./pages/AddNote";
 import EditNote from "./pages/EditNote";
 import Note from "./pages/Note";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import PrivateRoute from "./components/PrivateRoute";
 import { getNotesAction } from "./actions/notesActions";
 
@@ -105,6 +106,7 @@ function App() {
               <Login {...props} setIsAuthenticated={setIsAuthenticated} />
             )}
           />
+          <Route path="/register" render={(props) => <Register {...props} />} />
           <Route path="/" component={Home} />
         </Switch>
       </Box>
