@@ -4,7 +4,7 @@ import { Text, Box } from "@chakra-ui/react";
 
 const NoteCard = ({ note }) => {
   return (
-    <Link to={`/note/${note.ref.value.id}`}>
+    <Link to={`/note/${note._id}`}>
       <Box
         width="400px"
         overflow="hidden"
@@ -22,7 +22,7 @@ const NoteCard = ({ note }) => {
           lineHeight="tight"
           isTruncated
         >
-          {note.data.title}
+          {note.title}
         </Text>
         <Text
           mt="1"
@@ -31,13 +31,9 @@ const NoteCard = ({ note }) => {
           maxH="50px"
           overflow="hidden"
         >
-          {note.data.content}
+          {note.content}
         </Text>
-        {note.data.tags ? (
-          <Text fontWeight="semibold">{note.data.tags}</Text>
-        ) : (
-          ""
-        )}
+        {note.tags ? <Text fontWeight="semibold">{note.tags}</Text> : ""}
       </Box>
     </Link>
   );

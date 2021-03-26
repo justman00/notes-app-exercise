@@ -1,26 +1,33 @@
-import { getAllNotes, deleteNote, editNote, createNote } from "../api";
+import { deleteNote, editNote, createNote } from "../api";
+//import { get } from "es-cookie";
 
 export const START_GETTING_NOTES = "START_GETTING_NOTES";
 export const SUCCESS_GETTING_NOTES = "SUCCESS_GETTING_NOTES";
 export const ERROR_GETTING_NOTES = "ERROR_GETTING_NOTES";
 
-export const getNotesAction = () => (dispatch) => {
+export const getNotesAction = () => async (dispatch) => {
   dispatch({ type: START_GETTING_NOTES });
-  getAllNotes()
-    .then((res) => {
-      dispatch({
-        type: SUCCESS_GETTING_NOTES,
-        payload: res,
-      });
-      console.log("success: ", res);
-    })
-    .catch((error) => {
-      dispatch({
-        type: ERROR_GETTING_NOTES,
-        payload:
-          "Sorry! The page you were trying to access is currently unavailable.",
-      });
+
+  try {
+    const notes = await fetch(
+      `https://notes-app-ecaterina-popa.herokuapp.com/api/notes`,
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    ).then((res) => res.json());
+    dispatch({
+      type: SUCCESS_GETTING_NOTES,
+      payload: notes,
     });
+  } catch (err) {
+    dispatch({
+      type: ERROR_GETTING_NOTES,
+      payload:
+        "Sorry! The page you were trying to access is currently unavailable.",
+    });
+  }
 };
 
 export const ADD_NOTE_SUCCESS = "ADD_NOTE_SUCCESS";

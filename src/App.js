@@ -1,16 +1,47 @@
 import React, { useEffect } from "react";
 import { Route, NavLink, Switch } from "react-router-dom";
 import { Flex, Box, Text, Button } from "@chakra-ui/react";
+import { useDispatch } from "react-redux";
+//import { get } from "es-cookie";
+
 import Home from "./pages/Home";
 import NotesList from "./pages/NotesList";
 import AddNote from "./pages/AddNote";
 import EditNote from "./pages/EditNote";
 import Note from "./pages/Note";
-import { useDispatch } from "react-redux";
+import Login from "./pages/Login";
+import PrivateRoute from "./components/PrivateRoute";
 import { getNotesAction } from "./actions/notesActions";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = React.useState(true);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    //const token = get("token");
+
+    const token = localStorage.getItem("token");
+
+    fetch(
+      `https://notes-app-ecaterina-popa.herokuapp.com/api/auth/check-auth`,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    )
+      .then((res) => {
+        switch (res.status) {
+          case 200:
+            setIsAuthenticated(true);
+            break;
+          default:
+            setIsAuthenticated(false);
+            break;
+        }
+      })
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     dispatch(getNotesAction());
@@ -48,18 +79,33 @@ function App() {
           </Box>
         </Flex>
         <Switch>
-          <Route
+          <PrivateRoute
             path="/notes-list"
+            isAuthenticated={isAuthenticated}
             render={(props) => <NotesList {...props} />}
           />
-          <Route path="/note/:id" render={(props) => <Note {...props} />} />
-          <Route
+          <PrivateRoute
+            path="/note/:id"
+            isAuthenticated={isAuthenticated}
+            render={(props) => <Note {...props} />}
+          />
+          <PrivateRoute
             path="/edit-note/:id"
+            isAuthenticated={isAuthenticated}
             render={(props) => <EditNote {...props} />}
           />
-          <Route path="/add-note" render={(props) => <AddNote {...props} />} />
+          <PrivateRoute
+            path="/add-note"
+            isAuthenticated={isAuthenticated}
+            render={(props) => <AddNote {...props} />}
+          />
+          <Route
+            path="/login"
+            render={(props) => (
+              <Login {...props} setIsAuthenticated={setIsAuthenticated} />
+            )}
+          />
           <Route path="/" component={Home} />
-          <Route>Hello World!</Route>
         </Switch>
       </Box>
     </div>
