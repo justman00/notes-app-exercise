@@ -12,10 +12,12 @@ const NotesList = (props) => {
           Loading...
         </Text>
       ) : null}
-      {props.notes.map((note, idx) => {
-        //console.log("note:", note);
-        return <NoteCard key={idx} note={note} />;
-      })}
+      {props.notes
+        //.sort((a, b) => b.timestamps - a.timestamps)
+        .map((note, idx) => {
+          //console.log("note:", note);
+          return <NoteCard key={idx} note={note} />;
+        })}
       {props.error ? (
         <Text align="center" mt="6" fontWeight="semibold" color="red.300">
           {props.error}

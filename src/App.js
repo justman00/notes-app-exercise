@@ -61,8 +61,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    dispatch(getNotesAction());
-  }, [dispatch]);
+    if (isAuthenticated) {
+      dispatch(getNotesAction());
+    }
+  }, [dispatch, isAuthenticated]);
 
   const handleLogOutClick = (e) => {
     localStorage.removeItem("token");

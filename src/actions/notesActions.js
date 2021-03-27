@@ -14,10 +14,12 @@ export const getNotesAction = () => async (dispatch) => {
         },
       }
     ).then((res) => res.json());
-    dispatch({
-      type: SUCCESS_GETTING_NOTES,
-      payload: notes,
-    });
+    if (Array.isArray(notes)) {
+      dispatch({
+        type: SUCCESS_GETTING_NOTES,
+        payload: notes,
+      });
+    }
   } catch (err) {
     dispatch({
       type: ERROR_GETTING_NOTES,
